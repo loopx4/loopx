@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>LOOP X — Strategy · Creative · Growth</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Bundled High-Performance Application (No module CORS restriction on file://) -->
+  <script defer src="dist/app.bundle.js"></script>
+</head>
+<body>
+
+  <!-- Film Grain Overlay for 35mm Architectural Cinematography -->
+  <div class="film-grain"></div>
+
+  <!-- Architectural Coordinates & Telemetry -->
+  <div class="datum-reticle reticle-tl">SYS // 51.5074° N, 0.1278° W</div>
+  <div class="datum-reticle reticle-tr">MONOLITH // SPEC: INFINITE LEMNISCATE</div>
+  <div class="datum-reticle reticle-bl">SCALE // 1:1 METAPHOR</div>
+  <div class="datum-reticle reticle-br">LOOP X ARCHITECTURAL IDENTITY</div>
+
+  <!-- 3D WebGL Canvas Layer (Fixed Background Viewport) -->
+  <div id="canvas-container"></div>
+
+  <!-- Spatial 3D Integrated Labels (Projected into 3D World) -->
+  <div id="spatial-tag-strategy" class="spatial-tag">
+    <div class="spatial-tag-inner">
+      <div class="spatial-tag-label">STRATEGY</div>
+      <div class="spatial-datum-line"></div>
+      <div class="spatial-tag-sub">ORTHOGONAL CALIBRATION</div>
+    </div>
+  </div>
+
+  <div id="spatial-tag-creative" class="spatial-tag">
+    <div class="spatial-tag-inner">
+      <div class="spatial-tag-label">CREATIVE</div>
+      <div class="spatial-datum-line"></div>
+      <div class="spatial-tag-sub">PARAMETRIC MORPHOLOGY</div>
+    </div>
+  </div>
+
+  <div id="spatial-tag-growth" class="spatial-tag">
+    <div class="spatial-tag-inner">
+      <div class="spatial-tag-label">GROWTH</div>
+      <div class="spatial-datum-line"></div>
+      <div class="spatial-tag-sub">MONUMENTAL EXPANSION</div>
+    </div>
+  </div>
+
+  <!-- Global Header Navigation -->
+  <header class="header-bar">
+    <div class="header-left">
+      <a href="#hero" class="brand-link" aria-label="LOOP X Home">
+        <svg class="brand-svg-header" viewBox="0 0 280 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- L: Signature Lime Green -->
+          <path d="M 8 12 L 22 12 L 22 46 L 46 46 L 46 56 L 8 56 Z" fill="#8ee326"/>
+          <!-- OO: Precise Continuous Infinity Symbol in Pure White -->
+          <path d="M 98 34 C 110 17 138 17 138 34 C 138 51 110 51 98 34 C 86 17 58 17 58 34 C 58 51 86 51 98 34 Z" stroke="#FFFFFF" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- P: Geometric Sans White -->
+          <path d="M 152 12 L 180 12 C 193 12 200 19 200 30 C 200 41 193 47 180 47 L 166 47 L 166 56 L 152 56 Z M 166 22 L 178 22 C 183 22 186 25 186 29.5 C 186 34 183 37 178 37 L 166 37 Z" fill="#FFFFFF"/>
+          <!-- X: Kinetic Brush / Tapered Slash Crossing -->
+          <path d="M 214 13 Q 230 33 254 57 Q 240 37 222 19 Z" fill="#FFFFFF"/>
+          <path d="M 218 16 C 230 30 244 44 258 56" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M 214 55 Q 230 35 254 13 Q 240 33 222 51 Z" fill="#FFFFFF"/>
+          <path d="M 218 52 C 230 38 244 24 258 10" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="header-center">
+      <div class="stage-status-badge">
+        <span class="status-indicator-dot"></span>
+        <span id="stage-indicator-badge" class="stage-badge-text">00 // SYSTEM</span>
+        <span class="sep">|</span>
+        <span id="stage-title-text" class="stage-title-text">THE VOID</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- Camera Perspective Controller -->
+      <div class="cam-mode-group">
+        <button class="cam-mode-btn active" data-mode="cinematic">CINEMATIC</button>
+        <button class="cam-mode-btn" data-mode="orbit">INSPECT</button>
+        <button class="cam-mode-btn" data-mode="macro">MACRO</button>
+      </div>
+
+      <!-- Procedural Web Audio Ambient Sound Toggle -->
+      <button id="audio-toggle" class="audio-toggle-btn" aria-label="Toggle Atmosphere Audio">
+        <div class="audio-bars-container">
+          <div class="audio-bar"></div>
+          <div class="audio-bar"></div>
+          <div class="audio-bar"></div>
+          <div class="audio-bar"></div>
+        </div>
+        <span class="sound-label">SOUND // MUTED</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Right-Side Floating Navigation Rail -->
+  <nav class="nav-rail" aria-label="Section Navigation">
+    <a href="#hero" class="nav-rail-item active" data-target="hero">
+      <span class="nav-rail-label">00 // HERO</span>
+      <span class="nav-rail-dot"></span>
+    </a>
+    <a href="#ideas" class="nav-rail-item" data-target="ideas">
+      <span class="nav-rail-label">01 // IDEAS</span>
+      <span class="nav-rail-dot"></span>
+    </a>
+    <a href="#strategy" class="nav-rail-item" data-target="strategy">
+      <span class="nav-rail-label">02 // STRATEGY</span>
+      <span class="nav-rail-dot"></span>
+    </a>
+    <a href="#creative" class="nav-rail-item" data-target="creative">
+      <span class="nav-rail-label">03 // CREATIVE</span>
+      <span class="nav-rail-dot"></span>
+    </a>
+    <a href="#growth" class="nav-rail-item" data-target="growth">
+      <span class="nav-rail-label">04 // GROWTH</span>
+      <span class="nav-rail-dot"></span>
+    </a>
+    <a href="#the-loop" class="nav-rail-item" data-target="the-loop">
+      <span class="nav-rail-label">05 // THE LOOP</span>
+      <span class="nav-rail-dot"></span>
+    </a>
+  </nav>
+
+  <!-- Main Scrollable Editorial Content Container -->
+  <main class="content-wrapper">
+
+    <!-- Section 0: Monumental Hero Monolith -->
+    <section id="hero" class="editorial-section hero-section" data-stage="0">
+      <div class="hero-monolith-container">
+        <div class="hero-logo-wrap">
+          <svg class="hero-logo-svg" viewBox="0 0 280 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- L: Signature Lime Green -->
+            <path d="M 8 12 L 22 12 L 22 46 L 46 46 L 46 56 L 8 56 Z" fill="#8ee326"/>
+            <!-- OO: Precise Continuous Infinity Symbol in Pure White -->
+            <path d="M 98 34 C 110 17 138 17 138 34 C 138 51 110 51 98 34 C 86 17 58 17 58 34 C 58 51 86 51 98 34 Z" stroke="#FFFFFF" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <!-- P: Geometric Sans White -->
+            <path d="M 152 12 L 180 12 C 193 12 200 19 200 30 C 200 41 193 47 180 47 L 166 47 L 166 56 L 152 56 Z M 166 22 L 178 22 C 183 22 186 25 186 29.5 C 186 34 183 37 178 37 L 166 37 Z" fill="#FFFFFF"/>
+            <!-- X: Kinetic Brush / Tapered Slash Crossing -->
+            <path d="M 214 13 Q 230 33 254 57 Q 240 37 222 19 Z" fill="#FFFFFF"/>
+            <path d="M 218 16 C 230 30 244 44 258 56" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M 214 55 Q 230 35 254 13 Q 240 33 222 51 Z" fill="#FFFFFF"/>
+            <path d="M 218 52 C 230 38 244 24 258 10" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="hero-triad">
+          <span>Strategy</span>
+          <span class="dot">·</span>
+          <span>Creative</span>
+          <span class="dot">·</span>
+          <span>Growth</span>
+        </div>
+
+        <div class="hero-manifesto">
+          <div class="hero-manifesto-line">Where ideas enter the loop.</div>
+          <div class="hero-manifesto-line"><span class="infinity-symbol">∞</span> And come out bigger.</div>
+        </div>
+
+        <a href="#ideas" class="hero-scroll-indicator" aria-label="Scroll down to ideas">
+          <span>SCROLL TO ENTER THE LOOP</span>
+          <div class="scroll-line-anim"></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 1: IDEAS (Raw Fragments & Possibility) -->
+    <section id="ideas" class="editorial-section align-left" data-stage="1">
+      <div class="editorial-grid">
+        <div class="editorial-card">
+          <div class="card-meta-header">
+            <span class="card-stage-code">01 // THE INFLUX</span>
+            <span class="card-datum">COORDINATE: INTAKE APERTURE</span>
+          </div>
+
+          <h2 class="card-title">IDEAS</h2>
+          <div class="card-subhead">RAW FRAGMENTS. UNTAMED CONCEPTS. UNCHARTED POTENTIAL.</div>
+
+          <p class="card-body">
+            Every transformation begins with an anomaly. Raw ideas do not enter the system fully formed; they arrive as dispersed fragments, subtle intuitions, and uncalibrated signals seeking direction. The loop captures this kinetic energy and begins the process of refinement.
+          </p>
+
+          <div class="card-spec-grid">
+            <div class="spec-item">
+              <span class="spec-label">AMORPHOUS SIGNALS</span>
+              <span class="spec-value">Unbound geometric fragments floating in the negative space.</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">SELECTIVE GRAVITATION</span>
+              <span class="spec-value">The intake aperture draws potential into the loop's laminar flow.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: STRATEGY (Alignment & Order) -->
+    <section id="strategy" class="editorial-section align-right" data-stage="2">
+      <div class="editorial-grid">
+        <div class="editorial-card">
+          <div class="card-meta-header">
+            <span class="card-stage-code">02 // ALIGNMENT</span>
+            <span class="card-datum">AXIS: ORTHOGONAL LATTICE</span>
+          </div>
+
+          <h2 class="card-title">STRATEGY</h2>
+          <div class="card-subhead">CHAOS BECOMES STRUCTURE. STRUCTURE BECOMES DIRECTION.</div>
+
+          <p class="card-body">
+            Without alignment, velocity is wasted. Strategy is the structural crucible where chaos resolves into precision. Coordinates lock. Boundaries define. Trajectories align. The system strips away friction, ensuring every element is calibrated toward exponential momentum.
+          </p>
+
+          <div class="card-spec-grid">
+            <div class="spec-item">
+              <span class="spec-label">CRYSTALLINE ORDER</span>
+              <span class="spec-value">Chaotic fragments lock into a rigid mathematical framework.</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">CALIBRATED VECTORS</span>
+              <span class="spec-value">Laser-defined telemetry paths replace ambiguity with singular focus.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: CREATIVE (Parametric Metamorphosis) -->
+    <section id="creative" class="editorial-section align-left" data-stage="3">
+      <div class="editorial-grid">
+        <div class="editorial-card">
+          <div class="card-meta-header">
+            <span class="card-stage-code">03 // TRANSFORMATION</span>
+            <span class="card-datum">TOPOLOGY: PARAMETRIC FLOW</span>
+          </div>
+
+          <h2 class="card-title">CREATIVE</h2>
+          <div class="card-subhead">WHERE RIGID STRUCTURES BEND AND IMAGINATION TAKES FORM.</div>
+
+          <p class="card-body">
+            Strategy provides the foundation; creativity provides the transcendence. Here, rigid geometric rules evolve into sculptural, fluid expressions. Forms morph, surfaces ripple, and new possibilities emerge that could never have been calculated in isolation.
+          </p>
+
+          <div class="card-spec-grid">
+            <div class="spec-item">
+              <span class="spec-label">MORPHING TOPOLOGY</span>
+              <span class="spec-value">Linear geometry bends into organic, undulating architectural ribbons.</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">SPECTRAL DISPERSION</span>
+              <span class="spec-value">Refractions and displacement waves unlock uncharted aesthetic depth.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: GROWTH (Monumental Expansion) -->
+    <section id="growth" class="editorial-section align-center-wide" data-stage="4">
+      <div class="editorial-grid">
+        <div class="editorial-card">
+          <div class="card-meta-header">
+            <span class="card-stage-code">04 // EXPANSION</span>
+            <span class="card-datum">MAGNITUDE: EXPONENTIAL SCALE</span>
+          </div>
+
+          <h2 class="card-title">GROWTH</h2>
+          <div class="card-subhead">SMALL IDEA → MONUMENTAL POSSIBILITY.</div>
+
+          <p class="card-body">
+            Growth is not an incremental metric—it is a dimensional expansion. What entered as a humble spark now manifests as a colossal architectural ecosystem. The loop multiplies its reach, scaling influence, clarity, and authority across the horizon.
+          </p>
+
+          <div class="card-spec-grid">
+            <div class="spec-item">
+              <span class="spec-label">MULTI-TIERED RESONANCE</span>
+              <span class="spec-value">Concentric harmonic rings project outward into the deep void.</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">MONUMENTAL SCALE</span>
+              <span class="spec-value">Tensile space trusses demonstrate true scale without generic graphs.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: THE LOOP (The Infinite Return & Synthesis) -->
+    <section id="the-loop" class="editorial-section loop-synthesis-section" data-stage="5">
+      <div class="synthesis-card">
+        <div class="synthesis-logo-wrap">
+          <svg class="synthesis-logo-svg" viewBox="0 0 280 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- L: Signature Lime Green -->
+            <path d="M 8 12 L 22 12 L 22 46 L 46 46 L 46 56 L 8 56 Z" fill="#8ee326"/>
+            <!-- OO: Precise Continuous Infinity Symbol in Pure White -->
+            <path d="M 98 34 C 110 17 138 17 138 34 C 138 51 110 51 98 34 C 86 17 58 17 58 34 C 58 51 86 51 98 34 Z" stroke="#FFFFFF" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <!-- P: Geometric Sans White -->
+            <path d="M 152 12 L 180 12 C 193 12 200 19 200 30 C 200 41 193 47 180 47 L 166 47 L 166 56 L 152 56 Z M 166 22 L 178 22 C 183 22 186 25 186 29.5 C 186 34 183 37 178 37 L 166 37 Z" fill="#FFFFFF"/>
+            <!-- X: Kinetic Brush / Tapered Slash Crossing -->
+            <path d="M 214 13 Q 230 33 254 57 Q 240 37 222 19 Z" fill="#FFFFFF"/>
+            <path d="M 218 16 C 230 30 244 44 258 56" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M 214 55 Q 230 35 254 13 Q 240 33 222 51 Z" fill="#FFFFFF"/>
+            <path d="M 218 52 C 230 38 244 24 258 10" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="synthesis-triad">
+          <span>Strategy</span>
+          <span class="dot">·</span>
+          <span>Creative</span>
+          <span class="dot">·</span>
+          <span>Growth</span>
+        </div>
+
+        <div class="synthesis-manifesto">
+          <div class="manifesto-line">Where ideas enter the loop.</div>
+          <div class="manifesto-line"><span class="infinity-symbol">∞</span> And come out bigger.</div>
+        </div>
+
+        <p class="synthesis-body">
+          The loop is not a closed cycle; it is an infinite accelerator. Ideas enter raw, unrefined, and uncertain. Through the disciplined alchemy of strategy and creative execution, they return larger, sharper, and monumental. The loop begins anew.
+        </p>
+
+        <a href="#hero" class="loop-restart-btn" id="btn-re-enter" aria-label="Re-enter the Loop">
+          <svg class="loop-restart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
+          <span>RE-ENTER THE LOOP</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
