@@ -50,13 +50,16 @@ body {
 ::-webkit-scrollbar {
   width: 5px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-dark);
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-lime);
 }
@@ -83,7 +86,11 @@ body {
   height: 100vh;
   z-index: 1;
   pointer-events: none;
-  background: radial-gradient(circle at 50% 50%, rgba(12, 16, 22, 0.5) 0%, rgba(4, 5, 7, 1) 90%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(12, 16, 22, 0.5) 0%,
+    rgba(4, 5, 7, 1) 90%
+  );
 }
 
 #canvas-container.interactive {
@@ -108,10 +115,27 @@ body {
   pointer-events: none;
 }
 
-.reticle-tl { top: 28px; left: 32px; }
-.reticle-tr { top: 28px; right: 32px; text-align: right; }
-.reticle-bl { bottom: 28px; left: 32px; }
-.reticle-br { bottom: 28px; right: 32px; text-align: right; }
+.reticle-tl {
+  top: 28px;
+  left: 32px;
+}
+
+.reticle-tr {
+  top: 28px;
+  right: 32px;
+  text-align: right;
+}
+
+.reticle-bl {
+  bottom: 28px;
+  left: 32px;
+}
+
+.reticle-br {
+  bottom: 28px;
+  right: 32px;
+  text-align: right;
+}
 
 /* Global Header Navigation */
 .header-bar {
@@ -126,11 +150,17 @@ body {
   z-index: 50;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  background: linear-gradient(to bottom, rgba(4, 5, 7, 0.85) 0%, rgba(4, 5, 7, 0) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(4, 5, 7, 0.85) 0%,
+    rgba(4, 5, 7, 0) 100%
+  );
   pointer-events: none;
 }
 
-.header-left, .header-center, .header-right {
+.header-left,
+.header-center,
+.header-right {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -187,8 +217,15 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; transform: scale(0.9); }
-  50% { opacity: 1; transform: scale(1.2); }
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
 .stage-badge-text {
@@ -200,39 +237,81 @@ body {
   color: var(--text-secondary);
 }
 
-/* Camera Mode Selector */
-.cam-mode-group {
+/* ==========================================================
+   LOOP X CONTACT / SOCIAL LINKS
+   ========================================================== */
+
+.social-links {
   display: flex;
   align-items: center;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 3px;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px;
+  min-height: 40px;
+  background: rgba(8, 11, 16, 0.72);
+  border: 1px solid rgba(142, 227, 38, 0.20);
+  border-radius: 10px;
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
-.cam-mode-btn {
-  background: transparent;
-  border: none;
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.25s var(--easing-smooth);
+.social-link {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 34px;
+  color: rgba(248, 250, 252, 0.72);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 7px;
+
+  transition:
+    color 0.22s var(--easing-smooth),
+    background 0.22s var(--easing-smooth),
+    border-color 0.22s var(--easing-smooth),
+    box-shadow 0.22s var(--easing-smooth),
+    transform 0.22s var(--easing-smooth);
 }
 
-.cam-mode-btn:hover {
-  color: var(--text-primary);
+.social-link svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  vector-effect: non-scaling-stroke;
 }
 
-.cam-mode-btn.active {
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--text-primary);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+/*
+ * Important:
+ * Do NOT fill the WhatsApp icon.
+ * This keeps the outline clean and prevents
+ * the clumsy filled appearance.
+ */
+.social-link:first-child svg {
+  fill: none;
+  stroke: currentColor;
+}
+
+.social-link:hover {
+  color: var(--accent-lime);
+  background: rgba(142, 227, 38, 0.10);
+  border-color: rgba(142, 227, 38, 0.34);
+  box-shadow: 0 0 14px rgba(142, 227, 38, 0.18);
+  transform: translateY(-1px);
+}
+
+.social-link:focus-visible {
+  outline: 1px solid var(--accent-lime);
+  outline-offset: 2px;
 }
 
 /* Audio Engine Toggle */
@@ -276,6 +355,41 @@ body {
   background-color: currentColor;
   border-radius: 1px;
   transition: height 0.1s ease;
+}
+
+/* Camera Mode Selector */
+.cam-mode-group {
+  display: flex;
+  align-items: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 3px;
+  backdrop-filter: blur(16px);
+}
+
+.cam-mode-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s var(--easing-smooth);
+}
+
+.cam-mode-btn:hover {
+  color: var(--text-primary);
+}
+
+.cam-mode-btn.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
 /* Right-Side Vertical Navigation Rail */
@@ -472,10 +586,25 @@ body {
 }
 
 @keyframes scroll-line {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  50.1% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+
+  50.1% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
 }
 
 /* Staggered Editorial Cards */
@@ -497,7 +626,9 @@ body {
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
-  transition: border-color 0.4s ease, transform 0.4s var(--easing-smooth);
+  transition:
+    border-color 0.4s ease,
+    transform 0.4s var(--easing-smooth);
 }
 
 .editorial-card:hover {
@@ -723,7 +854,9 @@ body {
   z-index: 5;
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.9);
-  transition: opacity 0.6s var(--easing-smooth), transform 0.6s var(--easing-smooth);
+  transition:
+    opacity 0.6s var(--easing-smooth),
+    transform 0.6s var(--easing-smooth);
 }
 
 .spatial-tag.visible {
@@ -741,7 +874,11 @@ body {
 .spatial-datum-line {
   width: 1px;
   height: 36px;
-  background: linear-gradient(to bottom, var(--accent-lime), transparent);
+  background: linear-gradient(
+    to bottom,
+    var(--accent-lime),
+    transparent
+  );
 }
 
 .spatial-tag-label {
@@ -755,7 +892,9 @@ body {
   padding: 6px 16px;
   border-radius: 4px;
   backdrop-filter: blur(12px);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.8), 0 0 15px var(--accent-lime-glow);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.8),
+    0 0 15px var(--accent-lime-glow);
 }
 
 .spatial-tag-sub {
@@ -786,7 +925,9 @@ body {
     display: none;
   }
 
-  .reticle-tr, .reticle-bl, .reticle-br {
+  .reticle-tr,
+  .reticle-bl,
+  .reticle-br {
     display: none;
   }
 
@@ -806,5 +947,22 @@ body {
 
   .hero-manifesto-line {
     font-size: 24px;
+  }
+
+  .social-links {
+    gap: 4px;
+    padding: 3px;
+    min-height: 36px;
+  }
+
+  .social-link {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+
+  .social-link svg {
+    width: 17px;
+    height: 17px;
   }
 }

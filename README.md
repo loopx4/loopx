@@ -3,74 +3,86 @@
 > **Strategy · Creative · Growth**  
 > *Where ideas enter the loop. ∞ And come out bigger.*
 
-A high-end, cinematic, scroll-driven 3D web experience built with Three.js, procedural Web Audio, and precision typography.
+A high-end, cinematic, scroll-driven 3D web experience built with Three.js, procedural Web Audio, and precision editorial typography.
 
 ---
 
 ## 🚀 Quick Start (Local)
 
-### 1. View Instantly (No Setup Required)
-Double-click `standalone.html` or `index.html` in your browser.
-
-### 2. Run Local Development Server
+### 1. Run Local Development Server
 ```bash
-# Start the local server
+# Start the local HTTP server
 npm start
 ```
 Then visit: **[http://localhost:3000](http://localhost:3000)**
 
-### 3. Build Production Bundle
+### 2. Build Production Bundle
 ```bash
 npm run build
 ```
 
 ---
 
-## 🌐 How to Deploy to Your Own Domain (e.g. `loopx.world`)
+## 🌐 How to Host on Cloudflare Pages or GitHub Pages
 
-Because this project is a high-performance static web application, you can host it for **free** with global CDN caching and free SSL.
+This project is fully static and pre-bundled. It requires zero server runtime and can be hosted for **free** on any edge CDN with SSL and global caching.
 
-### Option A: Deploy to Vercel (Recommended)
-1. Install Vercel CLI (or use the web dashboard at [vercel.com](https://vercel.com)):
+### 🌟 Option 1: Cloudflare Pages (Recommended - Ultra Fast)
+
+#### Method A: Direct Upload (Drag & Drop — No Git required)
+1. Go to your [Cloudflare Dashboard](https://dash.cloudflare.com/) → **Workers & Pages** → **Create application** → **Pages** → **Upload assets**.
+2. Name your project (e.g. `loop-x`).
+3. Drag and drop this `loop-x` folder (or upload it).
+4. Click **Deploy site**. Your website is live worldwide instantly!
+
+#### Method B: Connect via GitHub
+1. Push this repository to GitHub:
    ```bash
-   npx vercel
-   ```
-2. Follow the 2-step prompt to deploy.
-3. Go to **Project Settings → Domains** and add `loopx.world`.
-4. Point your DNS records (A/CNAME) to Vercel.
-
-### Option B: Deploy to Netlify
-1. Drag and drop the `loop-x-hero` folder onto [app.netlify.com/drop](https://app.netlify.com/drop).
-2. Go to **Domain Management → Custom Domains** and connect `loopx.world`.
-
-### Option C: Deploy to GitHub Pages
-1. Push this repository to your GitHub account:
-   ```bash
-   git init
    git add .
-   git commit -m "feat: launch LOOP X website"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/loop-x.git
-   git push -u origin main
+   git commit -m "feat: production ready for cloudflare and github pages"
+   git push origin main
    ```
-2. In GitHub repository **Settings → Pages**, select `main` branch.
-3. Add your custom domain `loopx.world`.
+2. In Cloudflare Dashboard → **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
+3. Select your repository.
+4. Set Build Settings:
+   - **Framework preset**: `None`
+   - **Build command**: `npm run build`
+   - **Build output directory**: `.`
+5. Click **Save and Deploy**. Cloudflare will auto-deploy on every push!
 
 ---
 
-## 📁 Project Structure
+### 🐙 Option 2: GitHub Pages
+
+1. Push this repository to your GitHub account:
+   ```bash
+   git add .
+   git commit -m "feat: production ready for github pages"
+   git push -u origin main
+   ```
+2. Go to your repository on GitHub → **Settings** → **Pages**.
+3. Under **Branch**, select `main` and folder `/ (root)`, then click **Save**.
+4. In ~60 seconds, your site is published at `https://YOUR_USERNAME.github.io/loop-x/`.
+
+---
+
+## 📁 Clean Production Structure
 
 ```
-loop-x-hero/
-├── index.html            # Main scroll-driven editorial page
-├── standalone.html       # 100% self-contained single-file version (works offline)
-├── styles.css            # Luxury obsidian aesthetic, glassmorphism & typography
-├── server.js             # Zero-dependency local Node server
-├── package.json          # Dependencies & build scripts (esbuild, three)
+loop-x/
+├── index.html            # Main scroll-driven 3D editorial page
+├── styles.css            # Obsidian aesthetic, glassmorphism & typography
+├── dist/
+│   ├── app.bundle.js     # Production compiled JavaScript bundle
+│   └── app.bundle.js.map # Source map
+├── assets/
+│   └── loopx-favicon.png # Brand favicon & social share asset
 ├── js/
 │   ├── main.js           # Three.js engine & scroll synchronization
-│   ├── loop-geometry.js  # 3D Lemniscate architecture & particle systems
+│   ├── loop-geometry.js  # 3D Lemniscate geometry & particle systems
 │   └── audio.js          # Procedural Web Audio synthesizer engine
-└── dist/
-    └── app.bundle.js     # Optimized production distribution bundle
+├── _headers              # Cloudflare Pages security & performance caching rules
+├── .nojekyll             # GitHub Pages static serving bypass
+├── server.js             # Zero-dependency local Node server
+└── package.json          # Dependencies & build scripts (esbuild, three)
 ```

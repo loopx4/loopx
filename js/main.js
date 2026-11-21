@@ -256,13 +256,34 @@ class LoopXWebsiteApp {
       });
     });
 
-    // Re-enter the Loop button
+    // Re-enter the Loop button & Brand home link
     const restartBtn = document.getElementById('btn-re-enter');
     if (restartBtn) {
       restartBtn.addEventListener('click', (e) => {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         this.audioEngine.playTick();
+      });
+    }
+
+    const brandLink = document.querySelector('.brand-link');
+    if (brandLink) {
+      brandLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        this.audioEngine.playTick();
+      });
+    }
+
+    const scrollIndicator = document.querySelector('.hero-scroll-indicator');
+    if (scrollIndicator) {
+      scrollIndicator.addEventListener('click', (e) => {
+        e.preventDefault();
+        const ideasSec = document.getElementById('ideas');
+        if (ideasSec) {
+          ideasSec.scrollIntoView({ behavior: 'smooth' });
+          this.audioEngine.playTick();
+        }
       });
     }
   }
